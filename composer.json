@@ -1,0 +1,20 @@
+{
+    "name": "enoffspb/conference",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ilya Pastukhov",
+            "email": "enoff.spb@gmail.com"
+        },
+        {
+            "name": "Nik Ermilichev",
+            "email": "aclips@ya.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "phprealkit\\conference\\": "lib"
+        }
+    }
+}
