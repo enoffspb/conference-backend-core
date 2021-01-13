@@ -67,7 +67,23 @@ interface ConferenceServiceInterface
      * @param int $conferenceId ID of a conference
      * @param int $userId ID of a user
      * @param int|null $kickedBy ID of a user that kicks
-     * @return mixed
+     * @return bool
      */
     public function kickUser(int $conferenceId, int $userId, int $kickedBy = null): bool;
+
+    /**
+     * Get a conference by ID
+     *
+     * @param int $id ID of conference
+     * @return ConferenceInterface|null
+     */
+    public function getConferenceById(int $id): ?ConferenceInterface;
+
+    /**
+     * Get a conference by code
+     *
+     * @param string $code
+     * @return ConferenceInterface|null
+     */
+    public function getConferenceByCode(string $code): ?ConferenceInterface;
 }

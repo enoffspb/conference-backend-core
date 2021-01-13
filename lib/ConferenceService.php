@@ -3,6 +3,7 @@
 namespace phprealkit\conference;
 
 use phprealkit\conference\Interfaces\ConferenceServiceInterface;
+use phprealkit\conference\Interfaces\ConferenceInterface;
 
 class ConferenceService implements ConferenceServiceInterface
 {
@@ -56,6 +57,24 @@ class ConferenceService implements ConferenceServiceInterface
     public function kickUser(int $conferenceId, int $userId, int $kickedBy = null): bool
     {
         // TODO: Implement kickUser() method.
+        throw new \Exception('Method is not implemented.');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getConferenceById(int $id): ?ConferenceInterface
+    {
+        // TODO: Implement getConferenceById() method.
+        throw new \Exception('Method is not implemented.');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getConferenceByCode(string $code): ?ConferenceInterface
+    {
+        // TODO: Implement getConferenceByCode() method.
         throw new \Exception('Method is not implemented.');
     }
 }
