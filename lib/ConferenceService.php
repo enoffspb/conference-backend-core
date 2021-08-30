@@ -10,23 +10,25 @@ use phprealkit\conference\Entity\Conference;
 class ConferenceService implements ConferenceServiceInterface
 {
     /**
-     * @return ConferenceBuilderInterface
+     * @inheritDoc
      */
-    public function getBuilder(): ConferenceBuilderInterface
+    public function getConferenceBuilder(): ConferenceBuilderInterface
     {
-//        $builder = new Con
+        $builder = new ConferenceBuilder();
+
+        return $builder;
     }
 
     /**
      * @inheritDoc
      */
-    public function createConference(?string $code = null, ?string $type = 'conference', array $users = [], ?array $settings = null): ?int
+    public function createConference(ConferenceBuilderInterface $conferenceBuilder): ?ConferenceInterface
     {
-        $conference = new Conference();
-        $conference->code = $code;
-        $conference->name = $name;
+        $conference = $conferenceBuilder->getConference();
 
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('@TODO Save conference');
+
+        return $conference;
     }
 
     /**

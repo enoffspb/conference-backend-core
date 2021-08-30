@@ -11,23 +11,22 @@ namespace phprealkit\conference\Interfaces;
 interface ConferenceServiceInterface
 {
     /**
-     * Create a conference with given code, type, users and settings.
-     *
-     * @param string|null $code Code of a conference. Can be any string, useful for getting the conference in future. E.g. "demo", "call-15", "private-HASH" and other.
-     * @param string|null $type Type of a conference. Can be any string, useful for filtering conferences by their type. E.g. "conference", "translation", "call".
-     * @param array $users List of users in next format: [$id => $role, ...], e.g.: [1 => 'operator', 2 => 'client'] or [3 => 'user', 4 => 'user']
-     * @param array|null $settings Any predefined and custom settings. ['mode' => 'video']  // or 'audio'
-     * @return int|null ID of new conference or null, if error was occurred.
+     * Returns new instance of ConferenceBuilder
      */
-    public function createConference(
-        ?string $code = null,
-        ?string $type = 'conference',
-        array $users = [],
-        ?array $settings = null
-    ): ?int;
+    public function getConferenceBuilder(): ?ConferenceBuilderInterface;
 
     /**
-     * Close a conference. The conference unavailable to join after closing.
+     * Creates a new conference.
+     *
+     * @param ConferenceBuilderInterface $conferenceBuilder Instance of ConferenceBuilder
+     * @return ConferenceInterface|null New conference object or null, if error has occurred.
+     */
+    public function createConference(
+        ConferenceBuilderInterface $conferenceBuilder
+    ): ?ConferenceInterface;
+
+    /**
+     * Closes a conference. The conference unavailable to join after closing.
      *
      * @param int $conferenceId ID of a conference
      * @param int|null $closedBy ID of a user that close conference, null for close by the system.

@@ -3,6 +3,7 @@
 namespace phprealkit\conference\tests;
 
 use phprealkit\conference\ConferenceService;
+use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\interfaces\ConferenceServiceInterface;
 use PHPUnit\Framework\TestCase;
@@ -24,24 +25,38 @@ class ConferenceServiceTest extends TestCase
         $this->assertNotNull($this->conferenceService);
     }
 
+    public function testGetBuilder()
+    {
+        $builder = $this->conferenceService->getConferenceBuilder();
+        $this->assertInstanceOf(ConferenceBuilderInterface::class, $builder);
+    }
+
     public function testCreateConference()
     {
-        $confId1 = $this->conferenceService->createConference('test1', 'conference', [
-            1 => 'user',
-            2 => 'user'
-        ]);
-        $this->assertNotNull($confId1);
+        $builder = $this->conferenceService->getConferenceBuilder();
+        $builder->setCode('test1');
+        $builder->addParticipant(1, 'user');
+        $builder->addParticipant(2, 'user');
+        $conf1 = $this->conferenceService->createConference($builder);
 
-        $confId2 = $this->conferenceService->createConference('test2', 'conference', [
-            3 => 'user',
-            4 => 'user'
-        ]);
-        $this->assertNotNull($confId2);
+        $this->assertInstanceOf(ConferenceInterface::class, $conf1);
+        $this->assertNotNull($conf1->getId());
 
-        $this->assertNotSame($confId1, $confId2);
 
-        $this->confIds[] = $confId1;
-        $this->confIds[] = $confId2;
+        $builder = $this->conferenceService->getConferenceBuilder();
+        $builder->setCode('test2');
+        $builder->addParticipant(3, 'user');
+        $builder->addParticipant(4, 'user');
+        $conf2 = $this->conferenceService->createConference($builder);
+
+        $this->assertInstanceOf(ConferenceInterface::class, $conf2);
+        $this->assertNotNull($conf2->getId());
+
+        $this->assertNotSame($conf1, $conf2);
+        $this->assertNotEquals($conf1->getId(), $conf2->getId());
+
+        $this->confIds[] = $conf1->getId();
+        $this->confIds[] = $conf2->getId();
     }
 
     public function testGetConferenceById()
