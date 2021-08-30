@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "phprealkit\\conference\\": "lib"
+            "phprealkit\\conference\\": "src"
         }
     },
     "require-dev": {
