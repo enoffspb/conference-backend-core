@@ -2,16 +2,30 @@
 
 namespace phprealkit\conference;
 
+use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Interfaces\ConferenceServiceInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
+use phprealkit\conference\Entity\Conference;
 
 class ConferenceService implements ConferenceServiceInterface
 {
+    /**
+     * @return ConferenceBuilderInterface
+     */
+    public function getBuilder(): ConferenceBuilderInterface
+    {
+//        $builder = new Con
+    }
+
     /**
      * @inheritDoc
      */
     public function createConference(?string $code = null, ?string $type = 'conference', array $users = [], ?array $settings = null): ?int
     {
+        $conference = new Conference();
+        $conference->code = $code;
+        $conference->name = $name;
+
         throw new \Exception('Method is not implemented.');
     }
 

@@ -7,7 +7,7 @@ use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\interfaces\ConferenceServiceInterface;
 use PHPUnit\Framework\TestCase;
 
-class ConferenceServiceTest extends  TestCase
+class ConferenceServiceTest extends TestCase
 {
     private ?ConferenceServiceInterface $conferenceService;
 

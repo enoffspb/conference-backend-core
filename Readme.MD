@@ -1,13 +1,13 @@
 Conference lib
 ==============
 
-Установка
+Install
 --------------
 ```shell
 composer install
 ```
 
-Запуск тестов
+Tests
 --------------
 ```shell
 php vendor/bin/phpunit tests
