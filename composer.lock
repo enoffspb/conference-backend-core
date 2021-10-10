@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cb5b3561ba79cad2bef2f48a63ec785",
-    "packages": [],
+    "content-hash": "3864701753a60d32c2050194997218c3",
+    "packages": [
+        {
+            "name": "enoffspb/entity-manager",
+            "version": "0.0.1",
+            "dist": {
+                "type": "path",
+                "url": "../entity-manager",
+                "reference": "feeb5681db4abb760a2eac6e65a77fc74baedaff"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.96",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "enoffspb\\EntityManager\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "enoffspb\\EntityManager\\Tests\\Unit\\": "tests/unit",
+                    "enoffspb\\EntityManager\\Tests\\": "tests/src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilya Pastukhov",
+                    "email": "enoff.spb@gmail.com"
+                },
+                {
+                    "name": "Nik Ermilichev",
+                    "email": "aclips@ya.ru"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -2096,7 +2138,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "enoffspb/entity-manager": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

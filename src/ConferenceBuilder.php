@@ -29,7 +29,7 @@ class ConferenceBuilder implements ConferenceBuilderInterface
         // TODO: Implement addParticipant() method.
     }
 
-    public function setExtraField(array $extraFields = []): void
+    public function setExtraFields(array $extraFields = []): void
     {
         // TODO: Implement setExtraField() method.
     }

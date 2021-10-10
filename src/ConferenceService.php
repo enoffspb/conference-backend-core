@@ -2,6 +2,8 @@
 
 namespace phprealkit\conference;
 
+use enoffspb\EntityManager\Interfaces\EntityManagerInterface;
+
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Interfaces\ConferenceServiceInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
@@ -9,6 +11,13 @@ use phprealkit\conference\Entity\Conference;
 
 class ConferenceService implements ConferenceServiceInterface
 {
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @inheritDoc
      */
@@ -26,7 +35,9 @@ class ConferenceService implements ConferenceServiceInterface
     {
         $conference = $conferenceBuilder->getConference();
 
-        throw new \Exception('@TODO Save conference');
+        if(!$this->entityManager->save($conference)) {
+            throw new \Exception('Cannot save conference entity.');
+        }
 
         return $conference;
     }

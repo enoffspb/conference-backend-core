@@ -16,7 +16,14 @@
             "phprealkit\\conference\\": "src"
         }
     },
+    "require": {
+        "enoffspb/entity-manager": "@dev"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
-    }
+    },
+    "repositories": [{
+        "type": "path",
+        "url": "../entity-manager"
+    }]
 }
