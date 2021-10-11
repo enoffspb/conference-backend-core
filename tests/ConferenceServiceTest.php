@@ -22,9 +22,10 @@ class ConferenceServiceTest extends TestCase
     public function setUp(): void
     {
         $inMemoryDriver = new InMemoryDriver();
-        $entiyManager = new EntityManager($inMemoryDriver);
+        $entityManager = new EntityManager($inMemoryDriver);
 
-        $this->conferenceService = new ConferenceService($entiyManager);
+        $this->conferenceService = new ConferenceService();
+        $this->conferenceService->setEntityManager($entityManager);
     }
 
     public function testCreateService()

@@ -4,6 +4,9 @@ namespace phprealkit\conference\Interfaces;
 
 use phprealkit\conference\Entity\Conference;
 
+/**
+ * An interface for ConferenceBuilder is using to create a new conference object.
+ */
 interface ConferenceBuilderInterface
 {
     public function setName(?string $name): void;

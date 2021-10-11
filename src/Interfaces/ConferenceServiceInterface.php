@@ -3,15 +3,12 @@
 namespace phprealkit\conference\Interfaces;
 
 /**
- * Interface ConferenceServiceInterface
- * @package phprealkit\conference\Interfaces
- *
- * Provides general functions of Conference module.
+ * Provides general functions of the conference subsystem.
  */
 interface ConferenceServiceInterface
 {
     /**
-     * Returns new instance of ConferenceBuilder
+     * Returns a new instance of ConferenceBuilder
      */
     public function getConferenceBuilder(): ?ConferenceBuilderInterface;
 
@@ -26,16 +23,16 @@ interface ConferenceServiceInterface
     ): ?ConferenceInterface;
 
     /**
-     * Closes a conference. The conference unavailable to join after closing.
+     * Closes a conference. The conference is unavailable to join after closing.
      *
      * @param int $conferenceId ID of a conference
-     * @param int|null $closedBy ID of a user that close conference, null for close by the system.
+     * @param int|null $closedBy ID of a user who closes conference, otherwise null if the system is an actor.
      * @return bool
      */
     public function closeConference(int $conferenceId, int $closedBy = null): bool;
 
     /**
-     * Add user to a conference.
+     * Add a user to a conference.
      *
      * @param int $conferenceId ID of a conference
      * @param int $userId ID of a user
@@ -45,23 +42,7 @@ interface ConferenceServiceInterface
     public function addUser(int $conferenceId, int $userId, string $role = 'user'): bool;
 
     /**
-     * Join user to a conference. Note that method doesn't "join" user, only save an information about join.
-     *
-     * @param int $conferenceId ID of a conference
-     * @param int $userId ID of a user
-     */
-    public function joinUser(int $conferenceId, int $userId): void;
-
-    /**
-     * Leave user from a conference. Note that method doesn't "leave" user, only save an information about leave.
-     *
-     * @param int $conferenceId ID of a conference
-     * @param int $userId ID of a user
-     */
-    public function leaveUser(int $conferenceId, int $userId): void;
-
-    /**
-     * Kick user from a conference.
+     * Kicks user from a conference.
      *
      * @param int $conferenceId ID of a conference
      * @param int $userId ID of a user
@@ -71,7 +52,32 @@ interface ConferenceServiceInterface
     public function kickUser(int $conferenceId, int $userId, int $kickedBy = null): bool;
 
     /**
-     * Get a conference by ID
+     * A user joins to a conference.
+     *
+     * @param int $conferenceId ID of a conference
+     * @param int $userId ID of a user
+     */
+    public function userJoins(int $conferenceId, int $userId): void;
+
+    /**
+     * A user exits from a conference.
+     *
+     * @param int $conferenceId ID of a conference
+     * @param int $userId ID of a user
+     */
+    public function userExits(int $conferenceId, int $userId): void;
+
+    /**
+     * Disconnect a user from a conference (just for current connection). The user can join again.
+     *
+     * @param int $conferenceId ID of a conference
+     * @param int $userId ID of a user
+     * @param int|null $disconnectedBy ID of a user who is doing disconnect
+     */
+    public function disconnectUser(int $conferenceId, int $userId, ?int $disconnectedBy = null): void;
+
+    /**
+     * Gets a conference by ID
      *
      * @param int $id ID of conference
      * @return ConferenceInterface|null
@@ -79,7 +85,7 @@ interface ConferenceServiceInterface
     public function getConferenceById(int $id): ?ConferenceInterface;
 
     /**
-     * Get a conference by code
+     * Gets a conference by a code
      *
      * @param string $code
      * @return ConferenceInterface|null

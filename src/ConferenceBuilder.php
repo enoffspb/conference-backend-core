@@ -5,6 +5,9 @@ namespace phprealkit\conference;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Entity\Conference;
 
+/**
+ * ConferenceBuilder is using to create a new conference object.
+ */
 class ConferenceBuilder implements ConferenceBuilderInterface
 {
     private Conference $conference;

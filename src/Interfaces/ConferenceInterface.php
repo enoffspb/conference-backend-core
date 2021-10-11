@@ -2,6 +2,9 @@
 
 namespace phprealkit\conference\Interfaces;
 
+/**
+ * An interface for Conference model.
+ */
 interface ConferenceInterface
 {
     public function getId(): ?int;
