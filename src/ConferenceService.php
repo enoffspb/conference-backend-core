@@ -63,13 +63,23 @@ class ConferenceService implements ConferenceServiceInterface
     /**
      * @inheritDoc
      */
-    public function createConference(ConferenceBuilderInterface $conferenceBuilder): ?ConferenceInterface
+    public function createConference(ConferenceBuilderInterface $conferenceBuilder, int $userId = null): ?ConferenceInterface
     {
         $conference = $conferenceBuilder->getConference();
 
-        if(!$this->accessManager->canCreateConference()) {
-            return null;
+        $user = null;
+        if($userId !== null) {
+            $user = $this->userProvider->getUserById($userId);
+            if($user === null) {
+                throw new \Exception('ConferenceService.UserProvider.getUserById(' . $userId . ') return null, user is not found.');
+            }
+
+            if(!$this->accessManager->canCreateConference($user)) {
+                // @todo add a error to the service
+                return null;
+            }
         }
+
         if(!$this->entityManager->save($conference)) {
             throw new \Exception('Cannot save conference entity.');
         }

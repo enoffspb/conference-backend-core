@@ -1,8 +1,10 @@
 <?php
 
-namespace phprealkit\conference\tests;
+namespace phprealkit\conference\tests\unit;
 
+use phprealkit\conference\Access\DefaultAccessManager;
 use phprealkit\conference\ConferenceService;
+use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\interfaces\ConferenceServiceInterface;
@@ -10,6 +12,7 @@ use phprealkit\conference\interfaces\ConferenceServiceInterface;
 use enoffspb\EntityManager\Driver\InMemoryDriver;
 use enoffspb\EntityManager\EntityManager;
 
+use phprealkit\conference\tests\UserProvider;
 use PHPUnit\Framework\TestCase;
 
 class ConferenceServiceTest extends TestCase
@@ -22,10 +25,26 @@ class ConferenceServiceTest extends TestCase
     public function setUp(): void
     {
         $inMemoryDriver = new InMemoryDriver();
-        $entityManager = new EntityManager($inMemoryDriver);
+        $entitiesConfig = [
+            Conference::class => [
+                'mapping' => [
+                    'id' => [
+                        'setter' => 'setId',
+                        'getter' => 'getId'
+                    ],
+                ]
+            ]
+        ];
+        $entityManager = new EntityManager($inMemoryDriver, $entitiesConfig);
+
+        $accessManager = new DefaultAccessManager();
+
+        $userProvider = new UserProvider();
 
         $this->conferenceService = new ConferenceService();
         $this->conferenceService->setEntityManager($entityManager);
+        $this->conferenceService->setAccessManager($accessManager);
+        $this->conferenceService->setUserProvider($userProvider);
     }
 
     public function testCreateService()

@@ -16,6 +16,12 @@
             "phprealkit\\conference\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "phprealkit\\conference\\tests\\unit\\": "tests/unit",
+            "phprealkit\\conference\\tests\\": "tests/src"
+        }
+    },
     "require": {
         "enoffspb/entity-manager": "@dev"
     },

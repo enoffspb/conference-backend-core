@@ -1,6 +1,6 @@
 <?php
 
-namespace phprealkit\conference\tests;
+namespace phprealkit\conference\tests\unit;
 
 use phprealkit\conference\ConferenceBuilder;
 use phprealkit\conference\Entity\Conference;
