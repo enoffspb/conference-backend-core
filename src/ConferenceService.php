@@ -15,7 +15,7 @@ use phprealkit\conference\Interfaces\UserProviderInterface;
 /**
  * A service provides general functions of the conference subsystem.
  *
- * An object of ConferenceService must be configured before use by setting all of incoming dependencies:
+ * An object of ConferenceService must be configured before use by setting the all of incoming dependencies:
  * ```php
  * $conferenceService->setEntityManager($entityManager)
  * $conferenceService->setDataChannel($dataChannel)
@@ -93,7 +93,7 @@ class ConferenceService implements ConferenceServiceInterface
     public function closeConference(int $conferenceId, int $closedBy = null): bool
     {
         // TODO: Implement closeConference() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -102,7 +102,7 @@ class ConferenceService implements ConferenceServiceInterface
     public function addUser(int $conferenceId, int $userId, string $role = 'user'): bool
     {
         // TODO: Implement addUser() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -111,7 +111,7 @@ class ConferenceService implements ConferenceServiceInterface
     public function userJoins(int $conferenceId, int $userId): void
     {
         // TODO: Implement joinUser() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -120,13 +120,13 @@ class ConferenceService implements ConferenceServiceInterface
     public function userExits(int $conferenceId, int $userId): void
     {
         // TODO: Implement leaveUser() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     public function disconnectUser(int $conferenceId, int $userId, ?int $disconnectedBy = null): void
     {
         // TODO: Implement disconnectUser() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -135,7 +135,7 @@ class ConferenceService implements ConferenceServiceInterface
     public function kickUser(int $conferenceId, int $userId, int $kickedBy = null): bool
     {
         // TODO: Implement kickUser() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -144,7 +144,7 @@ class ConferenceService implements ConferenceServiceInterface
     public function getConferenceById(int $id): ?ConferenceInterface
     {
         // TODO: Implement getConferenceById() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -153,6 +153,6 @@ class ConferenceService implements ConferenceServiceInterface
     public function getConferenceByCode(string $code): ?ConferenceInterface
     {
         // TODO: Implement getConferenceByCode() method.
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 }

@@ -13,24 +13,39 @@ class UserProvider implements UserProviderInterface
 {
     private array $cache = [];
 
-    public function getUserById(int $id): ?UserInterface
+    public function getUserById(int $id): ?User
     {
         if(isset($this->cache[$id])) {
             return $this->cache[$id];
         }
 
-        $user = new User([
-            'id' => $id,
-            'name' => 'User #' . $id
-        ]);
+        $user = $this->createUser($id);
 
         $this->cache[$id] = $user;
 
         return $this->cache[$id];
     }
 
-    public function getUsersByIds(): array
+    /**
+     * @return User[]
+     */
+    public function getUsersByIds(array $ids): array
     {
-        // TODO: Implement getUsersByIds() method.
+        $result = [];
+
+        foreach($ids as $id) {
+            $user = $this->getUserById($id);
+            $result[$id] = $user;
+        }
+
+        return $user;
+    }
+
+    private function createUser(int $id): User
+    {
+        $user = new User([
+            'id' => $id,
+            'name' => 'User #' . $id
+        ]);
     }
 }

@@ -10,7 +10,8 @@ interface UserProviderInterface
     public function getUserById(int $id): ?UserInterface;
 
     /**
+     * @param int[] $ids
      * @return UserInterface[]
      */
-    public function getUsersByIds(): array;
+    public function getUsersByIds(array $ids): array;
 }

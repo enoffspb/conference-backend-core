@@ -92,7 +92,7 @@ class ConferenceServiceTest extends TestCase
      */
     public function testGetConferenceById()
     {
-        $confId1 = $this->confIds[0] ?? null;
+        $confId1 = self::$confIds[0] ?? null;
 
         $conference = $this->conferenceService->getConferenceById($confId1);
         $this->assertNotNull($conference);
@@ -110,7 +110,7 @@ class ConferenceServiceTest extends TestCase
 
         $conference = $this->conferenceService->getConferenceByCode($code);
         $this->assertNotNull($conference);
-        $this->assertInstanceOf(ConferenceInte8rface::class, $conference);
+        $this->assertInstanceOf(ConferenceInterface::class, $conference);
 
         self::$conferences[$conference->getId()] = $conference;
     }
@@ -122,7 +122,7 @@ class ConferenceServiceTest extends TestCase
     {
         // @todo Test method ConferenceService->addUser()
 
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -132,7 +132,7 @@ class ConferenceServiceTest extends TestCase
     {
         // @todo Test method ConferenceService->kickUser()
 
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 
     /**
@@ -142,6 +142,6 @@ class ConferenceServiceTest extends TestCase
     {
         // @todo Test method ConferenceService->closeConference()
 
-        throw new \Exception('Method is not implemented.');
+        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
     }
 }
