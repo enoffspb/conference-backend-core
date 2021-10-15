@@ -2,7 +2,9 @@
 
 namespace phprealkit\conference\tests\unit;
 
-use phprealkit\conference\Access\DefaultAccessManager;
+use phprealkit\conference\Entity\Participant;
+use phprealkit\conference\Security\AccessDeniedException;
+use phprealkit\conference\Security\DefaultAccessManager;
 use phprealkit\conference\ConferenceService;
 use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
@@ -38,6 +40,14 @@ class ConferenceServiceTest extends TestCase
                         'getter' => 'getCode'
                     ]
                 ]
+            ],
+            Participant::class => [
+                'mapping' => [
+                    'id' => [
+                        'setter' => 'setId',
+                        'getter' => 'getId'
+                    ],
+                ]
             ]
         ];
         $entityManager = new EntityManager($inMemoryDriver, $entitiesConfig);
@@ -71,7 +81,7 @@ class ConferenceServiceTest extends TestCase
         $builder->setCode('test1');
         $builder->addParticipant(1, 'user');
         $builder->addParticipant(2, 'user');
-        $conf1 = self::$conferenceService->createConference($builder);
+        $conf1 = self::$conferenceService->createConference($builder, 1);
 
         $this->assertInstanceOf(ConferenceInterface::class, $conf1);
         $this->assertNotNull($conf1->getId());
@@ -131,9 +141,28 @@ class ConferenceServiceTest extends TestCase
      */
     public function testAddUser()
     {
-        // @todo Test method ConferenceService->addUser()
+        $confId = self::$confIds[0];
+        $actorId = 1;
+        $newUserId = 5;
 
-        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
+        $res = self::$conferenceService->addUser($confId, $newUserId, 'user', $actorId);
+        $this->assertTrue($res);
+
+        $hasNewUser = false;
+        $conf = self::$conferenceService->getConferenceById($confId);
+        foreach($conf->getParticipants() as $participant) {
+            if($participant->getUserId() === $newUserId) {
+                $hasNewUser = true;
+                break;
+            }
+        }
+        $this->assertTrue($hasNewUser);
+
+        $anotherActorId = 2;
+        $newUserId = 6;
+
+        $this->expectException(AccessDeniedException::class);
+        self::$conferenceService->addUser($confId, $newUserId, 'user', $anotherActorId);
     }
 
     /**

@@ -18,4 +18,6 @@ interface ConferenceInterface
      * @return Participant[]
      */
     public function getParticipants(): array;
+
+    public function addParticipant(Participant $participant): void;
 }

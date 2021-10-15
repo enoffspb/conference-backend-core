@@ -2,6 +2,7 @@
 
 namespace phprealkit\conference;
 
+use phprealkit\conference\Entity\Participant;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Entity\Conference;
 
@@ -29,12 +30,23 @@ class ConferenceBuilder implements ConferenceBuilderInterface
 
     public function addParticipant(int $userId, string $role = 'user'): void
     {
-        // TODO: Implement addParticipant() method.
+        foreach($this->conference->getParticipants() as $participant) {
+            if($participant->getUserId() === $userId) {
+                return;
+            }
+        }
+
+        $participant = new Participant();
+        $participant->setUserId($userId);
+        $participant->setRole($role);
+
+        $this->conference->addParticipant($participant);
     }
 
     public function setExtraFields(array $extraFields = []): void
     {
-        // TODO: Implement setExtraField() method.
+        // TODO: Implement setExtraFields() method.
+        throw new \Exception('@TODO: Implement setExtraFields() method.');
     }
 
     public function getConference(): Conference

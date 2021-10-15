@@ -2,7 +2,8 @@
 
 namespace phprealkit\conference\tests\unit;
 
-use phprealkit\conference\Access\DefaultAccessManager;
+use phprealkit\conference\Entity\Participant;
+use phprealkit\conference\Security\DefaultAccessManager;
 use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\AccessManagerInterface;
 use PHPUnit\Framework\TestCase;
@@ -77,8 +78,16 @@ class DefaultAccessManagerTest extends TestCase
         $conference = new Conference();
         $conference->setCreatedBy(1);
 
-        $conference->addParticipant(1, 'host');
-        $conference->addParticipant(2, 'user');
+        $participant1 = new Participant();
+        $participant1->setUserId(1);
+        $participant1->setRole('host');
+
+        $participant2 = new Participant();
+        $participant2->setUserId(2);
+        $participant2->setRole('user');
+
+        $conference->addParticipant($participant1);
+        $conference->addParticipant($participant2);
 
         $this->assertTrue($accessManager->canUserJoinToConference($creator, $conference));
         $this->assertTrue($accessManager->canUserJoinToConference($user2, $conference));

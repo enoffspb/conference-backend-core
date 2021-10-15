@@ -61,20 +61,8 @@ class Conference implements ConferenceInterface
         return $this->participants;
     }
 
-    public function addParticipant(int $userId, ?string $role = null): void
+    public function addParticipant(Participant $participant): void
     {
-        /**
-         * @todo Check if participant already exists.
-         */
-
-        $participant = new Participant();
-        $participant->setUserId($userId);
-
-        $confId = $this->getId();
-        if($confId !== null) {
-            $participant->setConferenceId($confId);
-        }
-
         $this->participants[] = $participant;
     }
 }

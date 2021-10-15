@@ -47,5 +47,7 @@ class UserProvider implements UserProviderInterface
             'id' => $id,
             'name' => 'User #' . $id
         ]);
+
+        return $user;
     }
 }

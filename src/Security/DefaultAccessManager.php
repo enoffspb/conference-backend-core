@@ -1,10 +1,11 @@
 <?php
 
-namespace phprealkit\conference\Access;
+namespace phprealkit\conference\Security;
 
 use phprealkit\conference\Interfaces\AccessManagerInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\Interfaces\UserInterface;
+use phprealkit\conference\tests\User;
 
 class DefaultAccessManager implements AccessManagerInterface
 {
@@ -23,7 +24,7 @@ class DefaultAccessManager implements AccessManagerInterface
         return false;
     }
 
-    public function canAddUserToConference(UserInterface $user, ConferenceInterface $conference): bool
+    public function canAddUserToConference(UserInterface $user, ConferenceInterface $conference, UserInterface $newUser, string $role): bool
     {
         if($conference->getCreatedBy() === $user->getId()) {
             return true;

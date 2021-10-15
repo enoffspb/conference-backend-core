@@ -4,6 +4,7 @@ namespace phprealkit\conference;
 
 use enoffspb\EntityManager\Interfaces\EntityManagerInterface;
 
+use phprealkit\conference\Entity\Participant;
 use phprealkit\conference\Interfaces\AccessManagerInterface;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
@@ -13,6 +14,7 @@ use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\DataChannelInterface;
 use phprealkit\conference\Interfaces\UserProviderInterface;
 use phprealkit\conference\Repository\ConferenceRepository;
+use phprealkit\conference\Security\AccessDeniedException;
 
 /**
  * A service provides general functions of the conference subsystem.
@@ -87,14 +89,27 @@ class ConferenceService implements ConferenceServiceInterface
             }
 
             if(!$this->accessManager->canCreateConference($user)) {
-                // @todo add a error to the service
-                return null;
+                throw new AccessDeniedException();
             }
+
+            $conference->setCreatedBy($userId);
         }
 
+        // @todo startTransaction()
+
         if(!$this->entityManager->save($conference)) {
-            throw new \Exception('Cannot save conference entity.');
+            throw new \Exception('Cannot save a conference entity.');
         }
+
+        foreach($conference->getParticipants() as $participant) {
+            $participant->setConferenceId($conference->getId());
+            $this->entityManager->save($participant);
+        }
+
+        // @todo commitTransaction()
+
+        // @todo Trigger a create event
+        // @todo Send a notify to each participant through the DataChannel
 
         return $conference;
     }
@@ -111,10 +126,41 @@ class ConferenceService implements ConferenceServiceInterface
     /**
      * @inheritDoc
      */
-    public function addUser(int $conferenceId, int $userId, string $role = 'user'): bool
+    public function addUser(int $conferenceId, int $userId, string $role = 'user', ?int $actorId = null): bool
     {
-        // TODO: Implement addUser() method.
-        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
+        $conference = $this->getConferenceById($conferenceId);
+        $user = $this->userProvider->getUserById($userId);
+
+        if($conference === null) {
+            throw new \Exception('Conference #' . $conferenceId . ' is not found.');
+        }
+        if($user === null) {
+            throw new \Exception('User #' . $userId . ' is not found.');
+        }
+
+        if($actorId !== null) {
+            $actor = $this->userProvider->getUserById($actorId);
+            if($actor === null) {
+                throw new \Exception('User #' . $actorId . ' is not found.');
+            }
+
+            if(!$this->accessManager->canAddUserToConference($actor, $conference, $user, $role)) {
+                throw new AccessDeniedException();
+            }
+        }
+
+        $participant = new Participant();
+        $participant->setUserId($userId);
+        $participant->setRole($role);
+        $participant->setConferenceId($conference->getId());
+        $conference->addParticipant($participant);
+
+        $this->entityManager->save($participant);
+
+        // @todo Trigger an event
+        // @todo Send a notify to a conference channel via the DataChannel
+
+        return true;
     }
 
     /**
