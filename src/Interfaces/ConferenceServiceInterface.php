@@ -13,6 +13,11 @@ interface ConferenceServiceInterface
     public function getConferenceBuilder(): ?ConferenceBuilderInterface;
 
     /**
+     * Returns an instance of ConferenceRepository
+     */
+    public function getConferenceRepository(): ConferenceRepositoryInterface;
+
+    /**
      * Creates a new conference.
      *
      * @param ConferenceBuilderInterface $conferenceBuilder Instance of ConferenceBuilder

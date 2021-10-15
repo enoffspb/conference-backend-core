@@ -7,6 +7,7 @@ use phprealkit\conference\ConferenceService;
 use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
+use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
 use phprealkit\conference\interfaces\ConferenceServiceInterface;
 
 use enoffspb\EntityManager\Driver\InMemoryDriver;
@@ -17,12 +18,12 @@ use PHPUnit\Framework\TestCase;
 
 class ConferenceServiceTest extends TestCase
 {
-    private ?ConferenceServiceInterface $conferenceService;
+    private static ?ConferenceService $conferenceService;
 
     private static $conferences = [];
     private static $confIds = [];
 
-    public function setUp(): void
+    public static function setUpBeforeClass(): void
     {
         $inMemoryDriver = new InMemoryDriver();
         $entitiesConfig = [
@@ -32,6 +33,10 @@ class ConferenceServiceTest extends TestCase
                         'setter' => 'setId',
                         'getter' => 'getId'
                     ],
+                    'code' => [
+                        'setter' => 'setCode',
+                        'getter' => 'getCode'
+                    ]
                 ]
             ]
         ];
@@ -41,41 +46,41 @@ class ConferenceServiceTest extends TestCase
 
         $userProvider = new UserProvider();
 
-        $this->conferenceService = new ConferenceService();
-        $this->conferenceService->setEntityManager($entityManager);
-        $this->conferenceService->setAccessManager($accessManager);
-        $this->conferenceService->setUserProvider($userProvider);
+        self::$conferenceService = new ConferenceService();
+        self::$conferenceService->setEntityManager($entityManager);
+        self::$conferenceService->setAccessManager($accessManager);
+        self::$conferenceService->setUserProvider($userProvider);
     }
 
     public function testCreateService()
     {
-        $this->assertInstanceOf(ConferenceServiceInterface::class, $this->conferenceService);
+        $this->assertInstanceOf(ConferenceServiceInterface::class, self::$conferenceService);
     }
 
     public function testGetBuilder()
     {
-        $builder = $this->conferenceService->getConferenceBuilder();
+        $builder = self::$conferenceService->getConferenceBuilder();
 
         $this->assertInstanceOf(ConferenceBuilderInterface::class, $builder);
     }
 
     public function testCreateConference()
     {
-        $builder = $this->conferenceService->getConferenceBuilder();
+        $builder = self::$conferenceService->getConferenceBuilder();
 
         $builder->setCode('test1');
         $builder->addParticipant(1, 'user');
         $builder->addParticipant(2, 'user');
-        $conf1 = $this->conferenceService->createConference($builder);
+        $conf1 = self::$conferenceService->createConference($builder);
 
         $this->assertInstanceOf(ConferenceInterface::class, $conf1);
         $this->assertNotNull($conf1->getId());
 
-        $builder = $this->conferenceService->getConferenceBuilder();
+        $builder = self::$conferenceService->getConferenceBuilder();
         $builder->setCode('test2');
         $builder->addParticipant(3, 'user');
         $builder->addParticipant(4, 'user');
-        $conf2 = $this->conferenceService->createConference($builder);
+        $conf2 = self::$conferenceService->createConference($builder);
 
         $this->assertInstanceOf(ConferenceInterface::class, $conf2);
         $this->assertNotNull($conf2->getId());
@@ -87,6 +92,12 @@ class ConferenceServiceTest extends TestCase
         self::$confIds[] = $conf2->getId();
     }
 
+    public function testGetRepository()
+    {
+        $repository = self::$conferenceService->getConferenceRepository();
+        $this->assertInstanceOf(ConferenceRepositoryInterface::class, $repository);
+    }
+
     /**
      * @depends testCreateConference
      */
@@ -94,7 +105,7 @@ class ConferenceServiceTest extends TestCase
     {
         $confId1 = self::$confIds[0] ?? null;
 
-        $conference = $this->conferenceService->getConferenceById($confId1);
+        $conference = self::$conferenceService->getConferenceById($confId1);
         $this->assertNotNull($conference);
         $this->assertInstanceOf(ConferenceInterface::class, $conference);
 
@@ -108,7 +119,7 @@ class ConferenceServiceTest extends TestCase
     {
         $code = 'test2';
 
-        $conference = $this->conferenceService->getConferenceByCode($code);
+        $conference = self::$conferenceService->getConferenceByCode($code);
         $this->assertNotNull($conference);
         $this->assertInstanceOf(ConferenceInterface::class, $conference);
 

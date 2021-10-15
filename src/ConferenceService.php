@@ -6,11 +6,13 @@ use enoffspb\EntityManager\Interfaces\EntityManagerInterface;
 
 use phprealkit\conference\Interfaces\AccessManagerInterface;
 use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
+use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
 use phprealkit\conference\Interfaces\ConferenceServiceInterface;
 use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\DataChannelInterface;
 use phprealkit\conference\Interfaces\UserProviderInterface;
+use phprealkit\conference\Repository\ConferenceRepository;
 
 /**
  * A service provides general functions of the conference subsystem.
@@ -58,6 +60,16 @@ class ConferenceService implements ConferenceServiceInterface
         $builder = new ConferenceBuilder();
 
         return $builder;
+    }
+
+    private ?ConferenceRepositoryInterface $conferenceRepository = null;
+    public function getConferenceRepository(): ConferenceRepositoryInterface
+    {
+        if($this->conferenceRepository === null) {
+            $this->conferenceRepository = new ConferenceRepository($this->entityManager);
+        }
+
+        return $this->conferenceRepository;
     }
 
     /**
@@ -143,8 +155,7 @@ class ConferenceService implements ConferenceServiceInterface
      */
     public function getConferenceById(int $id): ?ConferenceInterface
     {
-        // TODO: Implement getConferenceById() method.
-        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
+        return $this->getConferenceRepository()->getById($id);
     }
 
     /**
@@ -152,7 +163,14 @@ class ConferenceService implements ConferenceServiceInterface
      */
     public function getConferenceByCode(string $code): ?ConferenceInterface
     {
-        // TODO: Implement getConferenceByCode() method.
-        throw new \Exception('Method ' . __METHOD__ . ' is not implemented.');
+        $entities = $this->getConferenceRepository()->getList([
+            'code' => $code
+        ], null, 1);
+
+        if(count($entities) === 0) {
+            return null;
+        }
+
+        return $entities[0];
     }
 }
