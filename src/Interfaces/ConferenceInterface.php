@@ -1,8 +1,8 @@
 <?php
 
-namespace phprealkit\conference\Interfaces;
+namespace EnoffSpb\Conference\Interfaces;
 
-use phprealkit\conference\Entity\Participant;
+use EnoffSpb\Conference\Entity\Participant;
 
 /**
  * An interface for Conference model.

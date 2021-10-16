@@ -1,21 +1,21 @@
 <?php
 
-namespace phprealkit\conference\tests\unit;
+namespace EnoffSpb\Conference\tests\unit;
 
-use phprealkit\conference\Entity\Participant;
-use phprealkit\conference\Security\AccessDeniedException;
-use phprealkit\conference\Security\DefaultAccessManager;
-use phprealkit\conference\ConferenceService;
-use phprealkit\conference\Entity\Conference;
-use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
-use phprealkit\conference\Interfaces\ConferenceInterface;
-use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
-use phprealkit\conference\interfaces\ConferenceServiceInterface;
+use EnoffSpb\Conference\Entity\Participant;
+use EnoffSpb\Conference\Security\AccessDeniedException;
+use EnoffSpb\Conference\Security\DefaultAccessManager;
+use EnoffSpb\Conference\ConferenceService;
+use EnoffSpb\Conference\Entity\Conference;
+use EnoffSpb\Conference\Interfaces\ConferenceBuilderInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceRepositoryInterface;
+use EnoffSpb\Conference\interfaces\ConferenceServiceInterface;
 
 use EnoffSpb\EntityManager\Driver\InMemoryDriver;
 use EnoffSpb\EntityManager\EntityManager;
 
-use phprealkit\conference\tests\UserProvider;
+use EnoffSpb\Conference\tests\UserProvider;
 use PHPUnit\Framework\TestCase;
 
 class ConferenceServiceTest extends TestCase

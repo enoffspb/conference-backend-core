@@ -1,6 +1,6 @@
 <?php
 
-namespace phprealkit\conference\Interfaces;
+namespace EnoffSpb\Conference\Interfaces;
 
 /**
  * An interface for AccessManager is using to check user's rights to execute actions.

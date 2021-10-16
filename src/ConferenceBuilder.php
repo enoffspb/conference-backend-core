@@ -1,10 +1,10 @@
 <?php
 
-namespace phprealkit\conference;
+namespace EnoffSpb\Conference;
 
-use phprealkit\conference\Entity\Participant;
-use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
-use phprealkit\conference\Entity\Conference;
+use EnoffSpb\Conference\Entity\Participant;
+use EnoffSpb\Conference\Interfaces\ConferenceBuilderInterface;
+use EnoffSpb\Conference\Entity\Conference;
 
 /**
  * ConferenceBuilder is using to create a new conference object.

@@ -1,6 +1,6 @@
 <?php
 
-namespace phprealkit\conference\Security;
+namespace EnoffSpb\Conference\Security;
 
 class AccessDeniedException extends \Exception
 {

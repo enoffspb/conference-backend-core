@@ -1,11 +1,11 @@
 <?php
 
-namespace phprealkit\conference\Security;
+namespace EnoffSpb\Conference\Security;
 
-use phprealkit\conference\Interfaces\AccessManagerInterface;
-use phprealkit\conference\Interfaces\ConferenceInterface;
-use phprealkit\conference\Interfaces\UserInterface;
-use phprealkit\conference\tests\User;
+use EnoffSpb\Conference\Interfaces\AccessManagerInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceInterface;
+use EnoffSpb\Conference\Interfaces\UserInterface;
+use EnoffSpb\Conference\tests\User;
 
 class DefaultAccessManager implements AccessManagerInterface
 {

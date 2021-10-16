@@ -1,12 +1,12 @@
 <?php
 
-namespace phprealkit\conference\Repository;
+namespace EnoffSpb\Conference\Repository;
 
 use EnoffSpb\EntityManager\Interfaces\EntityManagerInterface;
 use EnoffSpb\EntityManager\Interfaces\RepositoryInterface;
-use phprealkit\conference\Entity\Conference;
-use phprealkit\conference\Interfaces\ConferenceInterface;
-use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
+use EnoffSpb\Conference\Entity\Conference;
+use EnoffSpb\Conference\Interfaces\ConferenceInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceRepositoryInterface;
 
 class ConferenceRepository implements ConferenceRepositoryInterface
 {

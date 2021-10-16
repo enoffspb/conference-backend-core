@@ -1,9 +1,9 @@
 <?php
 
-namespace phprealkit\conference\tests;
+namespace EnoffSpb\Conference\tests;
 
-use phprealkit\conference\Interfaces\UserInterface;
-use phprealkit\conference\Interfaces\UserProviderInterface;
+use EnoffSpb\Conference\Interfaces\UserInterface;
+use EnoffSpb\Conference\Interfaces\UserProviderInterface;
 
 /**
  * An implementation of UserProviderInterface for automated tests.

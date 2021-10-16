@@ -1,6 +1,6 @@
 <?php
 
-namespace phprealkit\conference\Entity;
+namespace EnoffSpb\Conference\Entity;
 
 use phpDocumentor\Reflection\Types\Null_;
 

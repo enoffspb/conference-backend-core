@@ -1,8 +1,8 @@
 <?php
 
-namespace phprealkit\conference\Interfaces;
+namespace EnoffSpb\Conference\Interfaces;
 
-use phprealkit\conference\Entity\Conference;
+use EnoffSpb\Conference\Entity\Conference;
 
 /**
  * An interface for ConferenceBuilder is using to create a new conference object.

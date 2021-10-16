@@ -1,8 +1,8 @@
 <?php
 
-namespace phprealkit\conference\tests;
+namespace EnoffSpb\Conference\tests;
 
-use phprealkit\conference\Interfaces\UserInterface;
+use EnoffSpb\Conference\Interfaces\UserInterface;
 
 class User implements UserInterface
 {

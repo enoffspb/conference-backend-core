@@ -1,8 +1,8 @@
 <?php
 
-namespace phprealkit\conference\Entity;
+namespace EnoffSpb\Conference\Entity;
 
-use phprealkit\conference\Interfaces\ConferenceInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceInterface;
 
 class Conference implements ConferenceInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace phprealkit\conference\Interfaces;
+namespace EnoffSpb\Conference\Interfaces;
 
 /**
  * An implementation of that interface must be provide users from a target system.

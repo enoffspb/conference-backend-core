@@ -1,14 +1,14 @@
 <?php
 
-namespace phprealkit\conference\tests\unit;
+namespace EnoffSpb\Conference\tests\unit;
 
-use phprealkit\conference\Entity\Participant;
-use phprealkit\conference\Security\DefaultAccessManager;
-use phprealkit\conference\Entity\Conference;
-use phprealkit\conference\Interfaces\AccessManagerInterface;
+use EnoffSpb\Conference\Entity\Participant;
+use EnoffSpb\Conference\Security\DefaultAccessManager;
+use EnoffSpb\Conference\Entity\Conference;
+use EnoffSpb\Conference\Interfaces\AccessManagerInterface;
 use PHPUnit\Framework\TestCase;
 
-use phprealkit\conference\tests\User;
+use EnoffSpb\Conference\tests\User;
 
 class DefaultAccessManagerTest extends TestCase
 {

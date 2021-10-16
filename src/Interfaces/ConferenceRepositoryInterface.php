@@ -1,6 +1,6 @@
 <?php
 
-namespace phprealkit\conference\Interfaces;
+namespace EnoffSpb\Conference\Interfaces;
 
 interface ConferenceRepositoryInterface
 {

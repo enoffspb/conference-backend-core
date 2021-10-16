@@ -13,13 +13,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "phprealkit\\conference\\": "src"
+            "EnoffSpb\\Conference\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "phprealkit\\conference\\tests\\unit\\": "tests/unit",
-            "phprealkit\\conference\\tests\\": "tests/src"
+            "EnoffSpb\\Conference\\tests\\unit\\": "tests/unit",
+            "EnoffSpb\\Conference\\tests\\": "tests/src"
         }
     },
     "require": {

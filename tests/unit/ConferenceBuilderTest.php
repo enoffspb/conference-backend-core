@@ -1,9 +1,9 @@
 <?php
 
-namespace phprealkit\conference\tests\unit;
+namespace EnoffSpb\Conference\tests\unit;
 
-use phprealkit\conference\ConferenceBuilder;
-use phprealkit\conference\Entity\Conference;
+use EnoffSpb\Conference\ConferenceBuilder;
+use EnoffSpb\Conference\Entity\Conference;
 use PHPUnit\Framework\TestCase;
 
 class ConferenceBuilderTest extends TestCase

@@ -1,20 +1,20 @@
 <?php
 
-namespace phprealkit\conference;
+namespace EnoffSpb\Conference;
 
 use EnoffSpb\EntityManager\Interfaces\EntityManagerInterface;
 
-use phprealkit\conference\Entity\Participant;
-use phprealkit\conference\Interfaces\AccessManagerInterface;
-use phprealkit\conference\Interfaces\ConferenceBuilderInterface;
-use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
-use phprealkit\conference\Interfaces\ConferenceServiceInterface;
-use phprealkit\conference\Interfaces\ConferenceInterface;
-use phprealkit\conference\Entity\Conference;
-use phprealkit\conference\Interfaces\DataChannelInterface;
-use phprealkit\conference\Interfaces\UserProviderInterface;
-use phprealkit\conference\Repository\ConferenceRepository;
-use phprealkit\conference\Security\AccessDeniedException;
+use EnoffSpb\Conference\Entity\Participant;
+use EnoffSpb\Conference\Interfaces\AccessManagerInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceBuilderInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceRepositoryInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceServiceInterface;
+use EnoffSpb\Conference\Interfaces\ConferenceInterface;
+use EnoffSpb\Conference\Entity\Conference;
+use EnoffSpb\Conference\Interfaces\DataChannelInterface;
+use EnoffSpb\Conference\Interfaces\UserProviderInterface;
+use EnoffSpb\Conference\Repository\ConferenceRepository;
+use EnoffSpb\Conference\Security\AccessDeniedException;
 
 /**
  * A service provides general functions of the conference subsystem.
