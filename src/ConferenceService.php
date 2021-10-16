@@ -2,7 +2,7 @@
 
 namespace phprealkit\conference;
 
-use enoffspb\EntityManager\Interfaces\EntityManagerInterface;
+use EnoffSpb\EntityManager\Interfaces\EntityManagerInterface;
 
 use phprealkit\conference\Entity\Participant;
 use phprealkit\conference\Interfaces\AccessManagerInterface;

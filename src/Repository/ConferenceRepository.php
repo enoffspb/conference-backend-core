@@ -2,8 +2,8 @@
 
 namespace phprealkit\conference\Repository;
 
-use enoffspb\EntityManager\Interfaces\EntityManagerInterface;
-use enoffspb\EntityManager\Interfaces\RepositoryInterface;
+use EnoffSpb\EntityManager\Interfaces\EntityManagerInterface;
+use EnoffSpb\EntityManager\Interfaces\RepositoryInterface;
 use phprealkit\conference\Entity\Conference;
 use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;

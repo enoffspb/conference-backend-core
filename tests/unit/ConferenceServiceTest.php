@@ -12,8 +12,8 @@ use phprealkit\conference\Interfaces\ConferenceInterface;
 use phprealkit\conference\Interfaces\ConferenceRepositoryInterface;
 use phprealkit\conference\interfaces\ConferenceServiceInterface;
 
-use enoffspb\EntityManager\Driver\InMemoryDriver;
-use enoffspb\EntityManager\EntityManager;
+use EnoffSpb\EntityManager\Driver\InMemoryDriver;
+use EnoffSpb\EntityManager\EntityManager;
 
 use phprealkit\conference\tests\UserProvider;
 use PHPUnit\Framework\TestCase;
